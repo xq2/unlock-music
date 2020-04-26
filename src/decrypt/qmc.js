@@ -72,7 +72,7 @@ export async function Decrypt(file, raw_filename, raw_ext) {
 }
 
 function reportKeyUsage(keyData, maskData, artist, title, album, filename, format) {
-    fetch("https://stats.ixarea.com/collect/qmcmask/usage", {
+    fetch("http://localhost:6580/qmcmask/usage", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -84,7 +84,7 @@ function reportKeyUsage(keyData, maskData, artist, title, album, filename, forma
 
 async function queryKeyInfo(keyData, filename, format) {
     try {
-        const resp = await fetch("https://stats.ixarea.com/collect/qmcmask/query", {
+        const resp = await fetch("http://localhost:6580/qmcmask/query", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({Format: format, Key: Array.from(keyData), Filename: filename}),
@@ -92,6 +92,7 @@ async function queryKeyInfo(keyData, filename, format) {
         let data = await resp.json();
         return QmcMaskCreate58(data.Matrix58, data.Super58A, data.Super58B);
     } catch (e) {
+        console.log(e);
     }
 }
 
