@@ -5,3 +5,4 @@ rules:                      # Array of rules
     mergeMethod: hardreset  # Optional, one of [none, merge, squash, rebase, hardreset], Default: none.
     mergeUnstable: false    # Optional, merge pull request even when the mergeable_state is not clean. Default: false
     # https://pull.git.ci/check/xq2/unlock-music
+    # https://pull.git.ci/process//xq2/unlock-music
